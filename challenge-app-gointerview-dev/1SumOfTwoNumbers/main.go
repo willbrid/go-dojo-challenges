@@ -9,7 +9,7 @@ import (
 func main() {
 	var a, b int
 	fmt.Println("Veuillez entrer deux nombres")
-	_, err := fmt.Scanf("%d", "%d", &a, &b)
+	_, err := fmt.Scanf("%d, %d", &a, &b)
 	if err != nil {
 		fmt.Println("Error reading input :", err)
 		return
@@ -17,4 +17,5 @@ func main() {
 
 	result := sum.Sum(a, b)
 	fmt.Printf("%d + %d = %d", a, b, result)
+	fmt.Println("")
 }
