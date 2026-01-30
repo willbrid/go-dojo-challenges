@@ -11,7 +11,7 @@ type testCase struct {
 	expected string
 }
 
-func TestReverseString_ReturnCorrect(t *testing.T) {
+func TestReverseString_ReturnCorrectReverseString(t *testing.T) {
 	tests := []testCase{
 		{"Simple word", "hello", "olleh"},
 		{"Sentence with spaces", "Go is fun!", "!nuf si oG"},
