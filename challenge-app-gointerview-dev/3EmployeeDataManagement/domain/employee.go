@@ -32,3 +32,12 @@ func (m *Manager) AddEmployee(employee Employee) error {
 
 	return nil
 }
+
+func (m *Manager) RemoveEmployee(id int) {
+	for index, existEmployee := range m.Employees {
+		if existEmployee.ID == id {
+			m.Employees = append(m.Employees[:index], m.Employees[index+1:]...)
+			break
+		}
+	}
+}

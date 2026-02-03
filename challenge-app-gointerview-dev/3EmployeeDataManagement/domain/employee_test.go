@@ -22,3 +22,20 @@ func TestAddEmployee(t *testing.T) {
 		t.Errorf("wrong error: %v", err)
 	}
 }
+
+func TestRemoveEmployee(t *testing.T) {
+	manager := domain.Manager{}
+
+	_ = manager.AddEmployee(domain.Employee{ID: 1, Name: "Alice", Age: 30, Salary: 70000})
+	_ = manager.AddEmployee(domain.Employee{ID: 2, Name: "Bob", Age: 25, Salary: 65000})
+
+	manager.RemoveEmployee(1)
+	if len(manager.Employees) != 1 {
+		t.Errorf("Expected 1 employee after removing ID 1, got %d", len(manager.Employees))
+	}
+
+	manager.RemoveEmployee(3)
+	if len(manager.Employees) != 1 {
+		t.Errorf("Expected 1 employee after attempting to remove non-existing ID, got %d", len(manager.Employees))
+	}
+}
