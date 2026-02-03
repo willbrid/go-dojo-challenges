@@ -41,3 +41,17 @@ func (m *Manager) RemoveEmployee(id int) {
 		}
 	}
 }
+
+func (m *Manager) GetAverageSalary() float64 {
+	var salarySum float64 = 0
+
+	for _, existEmployee := range m.Employees {
+		salarySum += existEmployee.Salary
+	}
+
+	if salarySum != 0 {
+		return salarySum / float64(len(m.Employees))
+	}
+
+	return 0
+}
