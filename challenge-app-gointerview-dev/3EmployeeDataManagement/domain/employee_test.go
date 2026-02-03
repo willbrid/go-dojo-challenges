@@ -57,3 +57,20 @@ func TestGetAverageSalary(t *testing.T) {
 		t.Errorf("Expected average salary %f with no employees, got %f", expectedAverage, avg)
 	}
 }
+
+func TestFindEmployeeByID(t *testing.T) {
+	manager := domain.Manager{}
+
+	_ = manager.AddEmployee(domain.Employee{ID: 1, Name: "Alice", Age: 30, Salary: 70000})
+	_ = manager.AddEmployee(domain.Employee{ID: 2, Name: "Bob", Age: 25, Salary: 65000})
+
+	employee := manager.FindEmployeeByID(2)
+	if employee == nil || employee.Name != "Bob" {
+		t.Errorf("Expected to find Bob, got %+v", employee)
+	}
+
+	employee = manager.FindEmployeeByID(3)
+	if employee != nil {
+		t.Errorf("Expected no employee, got %+v", employee)
+	}
+}
