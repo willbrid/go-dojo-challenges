@@ -74,3 +74,21 @@ func TestFindEmployeeByID(t *testing.T) {
 		t.Errorf("Expected no employee, got %+v", employee)
 	}
 }
+
+func TestFindEmployeeAfterRemoval(t *testing.T) {
+	manager := domain.Manager{}
+
+	_ = manager.AddEmployee(domain.Employee{ID: 1, Name: "Alice", Age: 30, Salary: 70000})
+	_ = manager.AddEmployee(domain.Employee{ID: 2, Name: "Bob", Age: 25, Salary: 65000})
+
+	employee := manager.FindEmployeeByID(2)
+	if employee == nil || employee.Name != "Bob" {
+		t.Errorf("Expected to find Bob, got %+v", employee)
+	}
+
+	manager.RemoveEmployee(2)
+	employee = manager.FindEmployeeByID(2)
+	if employee != nil {
+		t.Errorf("Expected no employee, got %+v", employee)
+	}
+}
